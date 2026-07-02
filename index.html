@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Qatar SIM Offer - Ooredoo & Vodafone</title>
+  <title>Qatar SIM Offer</title>
   <style>
     @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
     
@@ -12,13 +12,12 @@
       background: linear-gradient(135deg, #0c2a4d 0%, #1e3a8a 100%);
       margin: 0;
       padding: 15px;
-      color: #fff;
       min-height: 100vh;
     }
     .container {
       max-width: 650px;
       margin: 20px auto;
-      background: rgba(255,255,255,0.97);
+      background: white;
       color: #1e2937;
       border-radius: 28px;
       overflow: hidden;
@@ -26,18 +25,19 @@
     }
     .header {
       background: linear-gradient(135deg, #0284c8, #1e40af);
-      padding: 45px 25px 35px;
+      padding: 50px 25px 40px;
       text-align: center;
-      position: relative;
     }
     .header h1 {
-      margin: 0 0 8px 0;
-      font-size: 34px;
+      margin: 0 0 10px 0;
+      font-size: 36px;
       font-weight: 700;
+      color: white;
     }
     .header p {
       margin: 0;
       font-size: 18px;
+      color: white;
       opacity: 0.95;
     }
     .form-area {
@@ -45,10 +45,9 @@
     }
     label {
       display: block;
-      margin: 18px 0 8px;
+      margin: 20px 0 8px;
       font-weight: 600;
       color: #1e40af;
-      font-size: 15px;
     }
     select, input[type="text"] {
       width: 100%;
@@ -68,12 +67,10 @@
       font-size: 19px;
       font-weight: 700;
       cursor: pointer;
-      margin-top: 15px;
-      transition: all 0.3s;
+      margin-top: 20px;
     }
     button:hover {
-      transform: scale(1.03);
-      box-shadow: 0 12px 30px rgba(16, 185, 129, 0.4);
+      transform: scale(1.02);
     }
     .result {
       display: none;
@@ -82,36 +79,34 @@
       background: #ecfdf5;
       border-radius: 18px;
       border-left: 7px solid #10b981;
-      font-size: 16.5px;
     }
     .popup {
       display: none;
       position: fixed;
       top: 0; left: 0; right: 0; bottom: 0;
-      background: rgba(0,0,0,0.88);
+      background: rgba(0,0,0,0.85);
       z-index: 10000;
       align-items: center;
       justify-content: center;
     }
     .popup-content {
       background: white;
-      padding: 50px 35px;
-      border-radius: 28px;
+      padding: 45px 30px;
+      border-radius: 24px;
       text-align: center;
-      max-width: 440px;
-      box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+      max-width: 420px;
+      box-shadow: 0 20px 50px rgba(0,0,0,0.4);
     }
     .ad-button {
       background: linear-gradient(135deg, #f59e0b, #d97706);
       color: white;
-      padding: 20px 55px;
-      font-size: 21px;
+      padding: 18px 50px;
+      font-size: 20px;
       font-weight: 700;
       border: none;
       border-radius: 50px;
       cursor: pointer;
-      margin: 25px 0 15px;
-      box-shadow: 0 15px 35px rgba(245, 158, 11, 0.5);
+      margin: 20px 0;
     }
   </style>
 </head>
@@ -119,11 +114,11 @@
   <div class="container">
     <div class="header">
       <h1>🇶🇦 Qatar SIM Offer</h1>
-      <p>Ooredoo & Vodafone • Instant Offer Checker</p>
+      <p>Ooredoo & Vodafone • Instant Checker</p>
     </div>
     
     <div class="form-area">
-      <label>Select Your Network</label>
+      <label>Select Network</label>
       <select id="simType">
         <option value="Ooredoo">Ooredoo Qatar</option>
         <option value="Vodafone">Vodafone Qatar</option>
@@ -132,10 +127,10 @@
       <label>Enter Your Qatar Number</label>
       <input type="text" id="simNumber" placeholder="33123456" maxlength="8">
 
-      <button onclick="checkOffer()">🔍 Check My Special Offers</button>
+      <button onclick="checkOffer()">Check My Special Offers</button>
 
       <div id="result" class="result">
-        <h3 id="offerTitle" style="margin:0 0 15px 0; color:#10b981;"></h3>
+        <h3 id="offerTitle"></h3>
         <p id="offerDetails"></p>
       </div>
     </div>
@@ -143,10 +138,9 @@
 
   <div id="welcomePopup" class="popup">
     <div class="popup-content">
-      <h2 style="color:#1e40af;">🎉 Congratulations!</h2>
-      <p style="font-size:20px; color:#334155;">Your Exclusive Qatar Offer is Ready</p>
+      <h2 style="color:#1e40af;">🎉 Special Offer Ready!</h2>
+      <p style="font-size:19px;">Claim your exclusive deal now</p>
       <button class="ad-button" onclick="goToAdsterra()">Claim Offer Now →</button>
-      <p style="font-size:14px; color:#64748b;">Limited Time Deal • Don't Miss It</p>
     </div>
   </div>
 
@@ -156,23 +150,17 @@
       const number = document.getElementById('simNumber').value.trim();
       
       if (number.length < 7) {
-        alert("Please enter a valid Qatar number (e.g. 33123456)");
+        alert("Please enter a valid Qatar number!");
         return;
       }
       
-      document.getElementById('offerTitle').innerHTML = `${simType} Qatar - Special Offer for +974 ${number}`;
-      document.getElementById('offerDetails').innerHTML = `
-        ✅ <strong>200GB</strong> High-Speed 5G Data<br>
-        ✅ Unlimited Local Calls & SMS<br>
-        ✅ Free Netflix, YouTube & TikTok<br>
-        ✅ Best International Rates<br><br>
-        <strong>30 Days Validity</strong>
-      `;
+      document.getElementById('offerTitle').innerHTML = `${simType} - Special Offer for +974 ${number}`;
+      document.getElementById('offerDetails').innerHTML = `✅ 200GB 5G Data<br>✅ Unlimited Calls & SMS<br>✅ Free Streaming<br>✅ 30 Days Validity`;
       document.getElementById('result').style.display = 'block';
       
       setTimeout(() => {
         document.getElementById('welcomePopup').style.display = 'flex';
-      }, 1400);
+      }, 1200);
     }
 
     function goToAdsterra() {
